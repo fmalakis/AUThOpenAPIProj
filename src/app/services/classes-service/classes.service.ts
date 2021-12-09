@@ -15,23 +15,8 @@ export class ClassesService {
 
   async getAllFaculties() {
 
-    const res = await this.http.get<any>(Links.api + "getUnits/school");
-
-    res.subscribe((data) => {
-      let faculties: Department[] = [];
-
-      for (const depId in data.units) {
-        faculties.push(new Department(depId, 
-                                      data.units[depId]["name"],
-                                      data.units[depId]["nameEn"],
-                                      data.units[depId]["adminUnitIdFormatted"],
-                                      data.units[depId]["parentDomain"]));
-      }
-
-    })
-
     return new Promise<Department[]>((resolve) => {
-      
+
       let faculties: Department[] = [];
       const res = this.http.get<any>(Links.api + "getUnits/school");
 
