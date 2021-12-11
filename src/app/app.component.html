@@ -1,22 +1,46 @@
 <div style="height: 100%; background: #303030;">
   <mat-toolbar color="primary">
-    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-    <span class="spacer"></span>  
-    <span>Welcome to {{ title }}</span>
-    <span class="spacer"></span>
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col">
+          <button mat-raised-button color="basic">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+          </button>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <span>Welcome to {{ title }}</span>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+    
   </mat-toolbar>
 
   
 
-  <div class="container">
-    <div class="row" style="margin-top: 1%;">
-      <div class="col d-flex justify-content-center">
-        <h1 style="color: white;">Choose your desired department:</h1>
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center" style="margin-top: 1%;">
+      <div class="col-6 d-flex justify-content-center">
+        <h1 style="color: white;">Welcome to the AUTh Open Data API demo app! This application allows you to
+        freely explore AUTh's faculties and departments and serves as a demonstration of the scale of the API. Choose
+        the department of your choice from the table bellow:</h1>
       </div>
     </div>
-    <div class="row d-flex" style="margin-top: 0.1%;">
-      <div class="col">
-        <button *ngFor="let dep of arrayOfDepartments" mat-raised-button color="primary" style="margin-right: 1%; margin-top: 1%;">
+    <div class="row d-flex justify-content-center">
+      <div class="col d-flex justify-content-center">
+        <mat-form-field appearance="outline" style="width: 50%;">
+          <mat-label style="color: white">Search by name:</mat-label>
+          <mat-icon style="color: white" matPrefix>search</mat-icon>
+          <input style="color: white;" matInput placeholder="π.χ. Τμήμα Πληροφορικής" [(ngModel)]="searchString">
+          <button *ngIf="searchString" matSuffix mat-icon-button (click)="searchString=''">
+            <mat-icon style="color: white">close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" style="margin-top: 0.1%; margin-bottom: 1%; background: #303030;">
+      <div class="col d-flex justify-content-center flex-wrap">
+        <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button color="primary" style="margin-right: 1%; margin-top: 1%;">
           {{ dep.name }}
         </button>
       </div>

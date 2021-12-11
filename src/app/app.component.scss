@@ -1,3 +1,9 @@
 .spacer {
     flex: 1 1 auto;
   }
+
+  .mat-input-element::placeholder {
+    color: white;
+    opacity: 0.5;
+    /* add placeholder css here */
+  }

@@ -27,12 +27,6 @@ export class AppComponent {
 
   title = 'AUThOpenAPIProj';
 
-  uid: string = "";
-
-  async getUser() {
-    this.userService.getUserData(this.uid).then((user) => {
-      console.log(user);
-    });
-  }
+  searchString: string = "";
 
 }
