@@ -7,3 +7,9 @@
     opacity: 0.5;
     /* add placeholder css here */
   }
+
+@media screen and (max-width: 476px) {
+  footer {
+    display: none;
+  }
+}
