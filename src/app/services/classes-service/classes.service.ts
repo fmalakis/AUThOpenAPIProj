@@ -18,7 +18,7 @@ export class ClassesService {
     return new Promise<Department[]>((resolve) => {
 
       let faculties: Department[] = [];
-      const res = this.http.get<any>(Links.api + "getUnits/school");
+      const res = this.http.get<any>(`${Links.api}getUnits/school`);
 
       res.subscribe((data) => {
         for (const depId in data.units) {
@@ -31,7 +31,8 @@ export class ClassesService {
 
         resolve(faculties);
 
-      })
+      });
+
 
     });
 
