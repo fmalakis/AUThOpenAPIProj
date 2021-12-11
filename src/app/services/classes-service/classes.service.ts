@@ -34,32 +34,6 @@ export class ClassesService {
       })
 
     });
-    
-    
-    // this.http.get<any>(Links.api + "getUnits/school").subscribe((data) => {
-
-    //   let faculties: Department[] = [];
-
-    //   for (const depId in data.units) {
-    //     faculties.push(new Department(depId, 
-    //                                   data.units[depId]["name"],
-    //                                   data.units[depId]["nameEn"],
-    //                                   data.units[depId]["adminUnitIdFormatted"],
-    //                                   data.units[depId]["parentDomain"]));
-    //   }
-      
-    //   return new Promise<Department[]>((resolve, reject) => {
-    //     console.log("lol")
-    //     if (faculties) {
-    //       resolve(faculties);
-    //     } else {
-    //       reject("Error");
-    //     }
-    //   });
-  
-    // });
-
-    // return this.http.get<Department[]>(Links.api + "getUnits/school");
 
   }
 
