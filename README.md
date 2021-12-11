@@ -1,6 +1,6 @@
 # AUThOpenAPIProj
 
-This project is being developed for the purposes of the School of Code assignment, from the Software Engineering class of the Aristotle University of Thessaloniki, Computer Science Department. It is an attempt at creating an interactive catalog/finder of all the classes offered at AUTh, organised by their respective Faculties and Departments, using the AUTh Open Data API.
+This project is being developed for the purposes of the School of Code assignment (NCO-05-05, Software Engineering), from the Software Engineering class of the Aristotle University of Thessaloniki, Computer Science Department. It is an attempt at creating an interactive catalog/finder of all the classes offered at AUTh, organised by their respective Faculties and Departments, using the AUTh Open Data API. This app was developed using Angular, Bootstrap and Angular Material for theming.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
 
