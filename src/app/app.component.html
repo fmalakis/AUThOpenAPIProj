@@ -4,11 +4,11 @@
       <div class="row d-flex justify-content-center">
         <div class="col">
           <button mat-raised-button color="basic">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            <mat-icon>home</mat-icon>
           </button>
         </div>
-        <div class="col d-flex justify-content-center">
-          <span>Welcome to {{ title }}</span>
+        <div class="col d-flex align-items-center justify-content-center flex-shrink-0">
+          <span>AUthOpenDataAPI</span>
         </div>
         <div class="col"></div>
       </div>
@@ -20,15 +20,15 @@
 
   <div class="container-fluid">
     <div class="row d-flex justify-content-center" style="margin-top: 1%;">
-      <div class="col-6 d-flex justify-content-center">
-        <h1 style="color: white;">Welcome to the AUTh Open Data API demo app! This application allows you to
+      <div class="col-lg-6 col-md-8 col-sm-10 d-flex justify-content-center">
+        <h2 style="color: white; overflow-wrap: break-word;">Welcome to the AUTh Open Data API demo app! This application allows you to
         freely explore AUTh's faculties and departments and serves as a demonstration of the scale of the API. Choose
-        the department of your choice from the table bellow:</h1>
+        the department of your choice from the table bellow:</h2>
       </div>
     </div>
     <div class="row d-flex justify-content-center">
-      <div class="col d-flex justify-content-center">
-        <mat-form-field appearance="outline" style="width: 50%;">
+      <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+        <mat-form-field appearance="outline" style="width: 100%;">
           <mat-label style="color: white">Search by name:</mat-label>
           <mat-icon style="color: white" matPrefix>search</mat-icon>
           <input style="color: white;" matInput placeholder="π.χ. Τμήμα Πληροφορικής" [(ngModel)]="searchString">
@@ -40,7 +40,7 @@
     </div>
     <div class="row d-flex justify-content-center" style="margin-top: 0.1%; margin-bottom: 1%; background: #303030;">
       <div class="col d-flex justify-content-center flex-wrap">
-        <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button color="primary" style="margin-right: 1%; margin-top: 1%;">
+        <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button color="primary" style="margin-right: 1%; margin-top: 1%; white-space: pre-wrap !important;">
           {{ dep.name }}
         </button>
       </div>
