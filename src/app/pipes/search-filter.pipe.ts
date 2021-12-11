@@ -10,8 +10,13 @@ export class SearchFilterPipe implements PipeTransform {
     if (!items || !filter)
       return items;
 
-    return items.filter((item) => item.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
+    return items.filter((item) => 
+    item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase()
+    .includes(filter.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase()));
+  }
 
+  normalizeGreek(text: string) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
   }
 
 }
