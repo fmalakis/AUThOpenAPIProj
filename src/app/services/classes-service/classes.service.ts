@@ -62,6 +62,51 @@ export class ClassesService {
 
   }
 
+  async getCourses(dep: string) {
+    return new Promise<any>((resolve, reject) => {
+
+      const allCoursesRes = this.http.get<any>(`${Links.api}getDeptStudiesProg/${dep}`);
+      let progId = '';
+      allCoursesRes.subscribe((data) => {
+        data.studiesprogs.forEach((element: any) => {
+          if (element.prname.includes('ΠΠΣ'))
+            progId = element.prID;
+        });
+        if (! progId)
+          reject("Could not load courses for this department");
+        else {
+          const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
+          all.subscribe(async (data) => {
+            // data.courses.forEach(async (course: any) => {
+            //   const classRes = this.http.get<any>(`${Links.api}getCourseInfo/${course.courseId}`);
+            //   classRes.subscribe((data: any) => {
+            //     const singleCourse = data.course;
+            //     Courses.push(new Course(singleCourse.coursecode, singleCourse.AltKey, singleCourse.title, singleCourse.titleEN, singleCourse.ects, singleCourse.classID));
+            //   });
+            // });
+            resolve(data.courses);
+          });
+        };
+      });
+    });
+  }
+
+  getSingleCourseInfo(id: string) {
+
+    return new Promise<Course>((resolve, reject) => {
+      const res = this.http.get<any>(`${Links.api}getCourseInfo/${id}`);
+      res.subscribe((data => {
+        const newCourse = new Course(data.course.coursecode, data.course.AltKey, data.course.title, data.course.titleEN, data.course.ects, data.course.classID);
+        // console.log(newCourse);
+        resolve(newCourse);
+      }));
+    })
+    
+
+
+
+  }
+
   getCurrentDepartment() {
     if (this.currentDepartment)
       return this.currentDepartment;
@@ -70,6 +115,24 @@ export class ClassesService {
 
   setCurrentDepartment(dep: Department) {
     this.currentDepartment = dep;
+  }
+
+  getNiggers(progId: string) {
+    const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
+
+    all.subscribe((data) => {
+      let Courses: Course[] = [];
+      data.courses.forEach((course: any) => {
+        const classRes = this.http.get<any>(`${Links.api}getCourseInfo/${course.courseId}`);
+        classRes.subscribe((data: any) => {
+          const singleCourse = data.course;
+          Courses.push(new Course(singleCourse.coursecode, singleCourse.AltKey, singleCourse.title, singleCourse.titleEN, singleCourse.ects, singleCourse.classID));
+        });
+      });
+    });
+
+    
+
   }
 
 }
@@ -89,4 +152,13 @@ export class UnitInfo {
               public mail:string,
               public url: string,
               public secretaryTels: string[]) {};
+}
+
+export class Course {
+  constructor(public courseCode: string,
+              public altKey: string,
+              public title: string,
+              public titleEn: string,
+              public ects: string,
+              public id: string) {};
 }
