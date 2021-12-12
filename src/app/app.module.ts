@@ -16,13 +16,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { MainComponent } from './components/main/main.component';
+import { CommonModule } from '@angular/common';
+import { DepartmentComponent } from './components/department/department.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    MainComponent,
+    DepartmentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
     MatFormFieldModule,
     MatButtonModule,
     MatDividerModule,
-    MatRippleModule
+    MatRippleModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

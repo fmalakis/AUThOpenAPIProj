@@ -1,53 +1,20 @@
-<div style="height: 100%; background: #303030;">
-  <mat-toolbar color="primary">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col">
-          <button mat-raised-button color="basic">
-            <mat-icon>home</mat-icon>
-          </button>
-        </div>
-        <div class="col d-flex align-items-center justify-content-center flex-shrink-0">
-          <span>AUThExplorer</span>
-        </div>
-        <div class="col"></div>
-      </div>
-    </div>
-    
-  </mat-toolbar>
-
-  
-
-  <div class="container-fluid">
-    <div class="row d-flex justify-content-center" style="margin-top: 1%;">
-      <div class="col-lg-6 col-md-8 col-sm-10 d-flex justify-content-center">
-        <h2 style="color: white; overflow-wrap: break-word;">Welcome to AUThExplorer! This application allows you to
-        freely explore AUTh's faculties and departments and serves as a demonstration of the scale of the AUTh Open Data API. Choose
-        the department you want to explore from the options bellow:</h2>
-      </div>
-    </div>
+<mat-toolbar color="primary">
+  <div class="container">
     <div class="row d-flex justify-content-center">
-      <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <mat-label style="color: white">Search by name:</mat-label>
-          <mat-icon style="color: white" matPrefix>search</mat-icon>
-          <input style="color: white;" matInput placeholder="π.χ. Τμήμα Πληροφορικής" [(ngModel)]="searchString">
-          <button *ngIf="searchString" matSuffix mat-icon-button (click)="searchString=''">
-            <mat-icon style="color: white">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center" style="margin-top: 0.1%; margin-bottom: 1%; background: #303030;">
-      <div class="col d-flex justify-content-center flex-wrap">
-        <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button color="primary" style="margin-right: 1%; margin-top: 1%; white-space: pre-wrap !important;">
-          {{ dep.name }}
+      <div class="col">
+        <button mat-raised-button color="basic"
+        routerLink="/main" routerLinkActive="active">
+          <mat-icon>home</mat-icon>
         </button>
       </div>
+      <div class="col d-flex align-items-center justify-content-center flex-shrink-0">
+        <span>AUThExplorer</span>
+      </div>
+      <div class="col"></div>
     </div>
   </div>
-</div>
-
+</mat-toolbar>
+<router-outlet></router-outlet>
 <footer class="fixed-bottom text-center text-lg-start" style="background:#303030">
   <div class="footer-copyright text-center py-3" style="color: white">Developed by fmalakis
     <a style="margin-left: 0.5%; color: wheat;"
@@ -57,11 +24,3 @@
   ></a>
   </div>
 </footer>
-
-
-  
-
-
-
-
-<router-outlet></router-outlet>

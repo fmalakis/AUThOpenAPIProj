@@ -1,0 +1,41 @@
+<div style="height: 100%; background: #303030;">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-md-8 d-flex justify-content-center" style="padding-top: 0.7%; font-size: xx-large;">
+                <span *ngIf="unit" class="badge bg-success">
+                   {{ unit.name }}
+                </span>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center" style="margin-top: 0.5%;">
+            <div class="col d-flex justify-content-center">
+                <span *ngIf="unit" class="badge bg-dark" style="font-size: x-large; margin-right: 0.5%;">
+                    {{ unit.nameEn }}
+                </span>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center" style="padding-top: 0.5%;">
+            <div class="col d-flex justify-content-center">
+                <span *ngIf="unit" class="badge bg-info" style="font-size: large; margin-right: 0.5%;">
+                    {{ unit.domain }}
+                </span>
+                <a *ngIf="unit" href="mailto:{{unit.mail}}" target="_blank" class="badge bg-light" style="font-size: large; color: black; margin-right: 0.5%;">
+                    {{ unit.mail }}
+                </a>
+                <a *ngIf="unit" href="{{unit.url}}" target="_blank" class="badge bg-light" style="font-size: large; color: black; margin-right: 0.5%;">
+                    {{ unit.url }}
+                </a>
+            </div>
+        </div>
+        <div *ngIf="unit" class="row d-flex justify-content-center" style="margin-top: 0.5%;">
+            <div class="col d-flex justify-content-center">
+                <span class="badge bg-warning" style="font-size: large; margin-right: 0.5%;">
+                    Contact numbers:
+                </span> 
+                <a  *ngFor="let tel of unit.secretaryTels" href="tel:{{tel}}"class="badge bg-warning" style="font-size: large; margin-right: 0.5%;">
+                    {{ tel }}
+                </a> 
+            </div>
+        </div>
+    </div>
+</div>
