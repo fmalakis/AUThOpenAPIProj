@@ -24,10 +24,11 @@
           <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button 
           color="primary" 
           style="margin-right: 1%; margin-top: 1%; white-space: pre-wrap !important;"
-          (click)="navigateToDepartment(dep)">
+          [routerLink]="['/department', dep.id]" routerLinkActive="active">
             {{ dep.name }}
           </button>
         </div>
       </div>
     </div>
+
   </div>

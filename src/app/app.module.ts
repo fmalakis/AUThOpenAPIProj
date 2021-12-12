@@ -6,7 +6,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRippleModule} from '@angular/material/core';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { MainComponent } from './components/main/main.component';
 import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from './components/department/department.component';
+import { ClassesTableComponent } from './components/classes-table/classes-table/classes-table.component';
 
 
 
@@ -27,7 +29,8 @@ import { DepartmentComponent } from './components/department/department.componen
     AppComponent,
     SearchFilterPipe,
     MainComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    ClassesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,9 @@ import { DepartmentComponent } from './components/department/department.componen
     MatButtonModule,
     MatDividerModule,
     MatRippleModule,
-    CommonModule
+    CommonModule,
+    MatTableModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

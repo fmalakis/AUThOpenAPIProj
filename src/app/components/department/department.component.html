@@ -1,4 +1,4 @@
-<div style="height: 100%; background: #303030;">
+<div style="background: #303030;">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 col-md-8 d-flex justify-content-center" style="padding-top: 0.7%; font-size: xx-large;">
@@ -37,5 +37,10 @@
                 </a> 
             </div>
         </div>
+        <div class="row d-flex justify-content-center" style="margin-top: 3%;">
+            <div class="col d-flex justify-content-center flex-wrap">
+                <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
+            </div>
+          </div>
     </div>
 </div>
