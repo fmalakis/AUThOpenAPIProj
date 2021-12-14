@@ -117,24 +117,6 @@ export class ClassesService {
     this.currentDepartment = dep;
   }
 
-  getNiggers(progId: string) {
-    const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
-
-    all.subscribe((data) => {
-      let Courses: Course[] = [];
-      data.courses.forEach((course: any) => {
-        const classRes = this.http.get<any>(`${Links.api}getCourseInfo/${course.courseId}`);
-        classRes.subscribe((data: any) => {
-          const singleCourse = data.course;
-          Courses.push(new Course(singleCourse.coursecode, singleCourse.AltKey, singleCourse.title, singleCourse.titleEN, singleCourse.ects, singleCourse.classID));
-        });
-      });
-    });
-
-    
-
-  }
-
 }
 
 export class Department {
