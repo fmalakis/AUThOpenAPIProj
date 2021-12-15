@@ -1,0 +1,9 @@
+::ng-deep .mat-tab-label {
+    background: transparent;
+    color: white;
+}
+
+::ng-deep .mat-tab-label-active {
+    color: black;
+    background-color: white;
+}
