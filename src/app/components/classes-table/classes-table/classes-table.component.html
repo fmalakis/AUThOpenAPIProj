@@ -1,16 +1,22 @@
-<table mat-table [dataSource]="courses" class="mat-elevation-z8" style="color: white;">
+
+<!-- <mat-paginator *ngIf="canDisplayTable" [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator> -->
+<table mat-table [dataSource]="courses" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8" style="color: white; max-height: 20%;">
     <ng-container matColumnDef="courseCode">
-        <th mat-header-cell *matHeaderCellDef>Course Code</th>
+        <th mat-sort-header *matHeaderCellDef style="color: black;">Course Code</th>
         <td mat-cell *matCellDef="let element"> {{ element.courseCode }}</td>
     </ng-container>
     <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Class Name</th>
+        <th mat-sort-header *matHeaderCellDef style="color: black;">Class Name</th>
         <td mat-cell *matCellDef="let element"> {{ element.title }} ({{ element.titleEn }})</td>
     </ng-container>
     <ng-container matColumnDef="ects">
-        <th mat-header-cell *matHeaderCellDef>ECTS</th>
+        <th mat-sort-header *matHeaderCellDef style="color: black;">ECTS</th>
         <td mat-cell *matCellDef="let element"> {{ element.ects }}</td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row  *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

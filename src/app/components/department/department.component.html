@@ -39,7 +39,14 @@
         </div>
         <div class="row d-flex justify-content-center" style="margin-top: 3%;">
             <div class="col d-flex justify-content-center flex-wrap">
-                <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
+                <mat-tab-group style="max-height: 100vh;">
+                    <mat-tab label="Undergraduate studies">
+                        <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
+                    </mat-tab>
+                    <mat-tab label="Postgraduate Studies">
+                        <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
           </div>
     </div>
