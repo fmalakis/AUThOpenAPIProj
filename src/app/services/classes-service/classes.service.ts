@@ -63,7 +63,9 @@ export class ClassesService {
   }
 
   async getCourses(dep: string) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<Course[]>((resolve, reject) => {
+
+      let courses: Course[] = [];
 
       const allCoursesRes = this.http.get<any>(`${Links.api}getDeptStudiesProg/${dep}`);
       let progId = '';
@@ -76,7 +78,11 @@ export class ClassesService {
           reject("Could not load courses for this department");
         else {
           const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
-          all.subscribe(async (data) => {
+          all.subscribe((data) => {
+            const c = data.courses;
+            c.forEach((el: any) => {
+              courses.push(new Course(el.coursecode, el.courseId));
+            });
             // data.courses.forEach(async (course: any) => {
             //   const classRes = this.http.get<any>(`${Links.api}getCourseInfo/${course.courseId}`);
             //   classRes.subscribe((data: any) => {
@@ -84,7 +90,7 @@ export class ClassesService {
             //     Courses.push(new Course(singleCourse.coursecode, singleCourse.AltKey, singleCourse.title, singleCourse.titleEN, singleCourse.ects, singleCourse.classID));
             //   });
             // });
-            resolve(data.courses);
+            resolve(courses);
           });
         };
       });
@@ -96,7 +102,7 @@ export class ClassesService {
     return new Promise<Course>((resolve, reject) => {
       const res = this.http.get<any>(`${Links.api}getCourseInfo/${id}`);
       res.subscribe((data => {
-        const newCourse = new Course(data.course.coursecode, data.course.AltKey, data.course.title, data.course.titleEN, data.course.ects, data.course.classID);
+        const newCourse = new Course(data.course.coursecode, data.course.classID, data.course.AltKey, data.course.title, data.course.titleEN, data.course.ects);
         // console.log(newCourse);
         resolve(newCourse);
       }));
@@ -138,9 +144,10 @@ export class UnitInfo {
 
 export class Course {
   constructor(public courseCode: string,
-              public altKey: string,
-              public title: string,
-              public titleEn: string,
-              public ects: string,
-              public id: string) {};
+              public id: string,
+              public altKey?: string,
+              public title?: string,
+              public titleEn?: string,
+              public ects?: string,
+              ) {};
 }

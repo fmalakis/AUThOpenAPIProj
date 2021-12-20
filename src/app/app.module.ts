@@ -8,6 +8,14 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
+import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
+
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +56,11 @@ import { ClassesTableComponent } from './components/classes-table/classes-table/
     MatRippleModule,
     CommonModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

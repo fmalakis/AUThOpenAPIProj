@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ClassesService, Course } from 'src/app/services/classes-service/classes.service';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -13,11 +14,13 @@ export class ClassesTableComponent implements OnInit {
   @Input() id: string;
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatSort) sorter: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   courses: Course[] = [];
   sortedCourses: Course[];
   classService: ClassesService;
   canDisplayTable: boolean = false;
+  dataSource = new MatTableDataSource<Course>([]);
 
   displayedColumns: string[] = ['courseCode', 'title', 'ects'];
 
@@ -26,20 +29,26 @@ export class ClassesTableComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.classService.getCourses(this.id).then((data: any) => {
-      data.forEach((course: any) => {
-        this.classService.getSingleCourseInfo(course.courseId).then((data) => {
-          this.courses.push(data);
+    this.classService.getCourses(this.id).then((data: Course[]) => {
+      this.courses = data;
+      this.dataSource.data = this.courses;
+      this.dataSource.paginator = this.paginator;
+      this.sorter.sort({disableClear: false, id: 'courseCode', start: 'asc'});
+      console.log(this.courses);
+      for (let i = 0; i < this.courses.length; i++) {
+        this.classService.getSingleCourseInfo(this.courses[i].id).then((data) => {
+          this.courses[i] = data;
+          this.dataSource.data = this.courses;
           this.table.renderRows();
         });
-      });
-      // le epic way to make up for the fact I cant get all course info with one API call
-      setTimeout(() => {
-        this.canDisplayTable = true;
-        this.sorter.sort({disableClear: false, id: 'courseCode', start: 'asc'});
-      }, 500);
+      }
     });
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   sortData(sort: Sort) {
     const data = this.courses.slice();
@@ -65,7 +74,7 @@ export class ClassesTableComponent implements OnInit {
   }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
+function compare(a: any, b: any, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
