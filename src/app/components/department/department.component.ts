@@ -14,6 +14,7 @@ export class DepartmentComponent implements OnInit {
   route: ActivatedRoute;
   schoolId: string = "";
   unit: UnitInfo | any;
+  canDisplayTables: boolean = false;
 
   constructor(classService: ClassesService, route: ActivatedRoute) { 
     this.classService = classService;
@@ -26,6 +27,9 @@ export class DepartmentComponent implements OnInit {
       this.schoolId = params['dId'];
       this.classService.getUnitInfo(this.schoolId).then((unit) => {
         this.unit = unit;
+        setTimeout(() => {
+          this.canDisplayTables = true;
+        }, 500);
       });
     });
     
