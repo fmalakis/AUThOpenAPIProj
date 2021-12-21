@@ -37,17 +37,17 @@
                 </a> 
             </div>
         </div>
-        <div class="row d-flex justify-content-center" style="margin-top: 3%;">
-            <div class="col d-flex justify-content-center flex-wrap">
+        <div class="row d-flex justify-content-center" style="margin-top: 3%; max-height: 20%;">
+            <div class="col col-lg-10 d-flex justify-content-center flex-wrap">
                 <mat-spinner *ngIf="!canDisplayTables"></mat-spinner>
-                <mat-tab-group [hidden]="!canDisplayTables" style="max-height: 100vh;">
-                    <mat-tab label="Undergraduate studies">
+                <!-- <mat-tab-group [hidden]="!canDisplayTables" style="max-height: 60%;"> -->
+                    <!-- <mat-tab label="Undergraduate studies"> -->
+                <app-classes-table *ngIf="unit" [id]="unit.domain"></app-classes-table>
+                    <!-- </mat-tab> -->
+                    <!-- <mat-tab label="Postgraduate Studies">
                         <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
-                    </mat-tab>
-                    <mat-tab label="Postgraduate Studies">
-                        <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
-                    </mat-tab>
-                </mat-tab-group>
+                    </mat-tab> -->
+                <!-- </mat-tab-group> -->
             </div>
           </div>
     </div>
