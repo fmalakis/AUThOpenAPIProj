@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ClassesTableComponent implements OnInit {
   @Input() id: string;
+  @Input() progId: string;
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatSort) sorter: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -29,7 +30,7 @@ export class ClassesTableComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.classService.getCourses(this.id).then((data: Course[]) => {
+    this.classService.getCourses(this.id, this.progId).then((data: Course[]) => {
       this.courses = data;
       this.dataSource.data = this.courses;
       this.dataSource.paginator = this.paginator;

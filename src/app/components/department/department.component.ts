@@ -13,6 +13,7 @@ export class DepartmentComponent implements OnInit {
   private classService: ClassesService;
   route: ActivatedRoute;
   schoolId: string = "";
+  progId: string = "";
   unit: UnitInfo | any;
   canDisplayTables: boolean = false;
 
@@ -25,6 +26,7 @@ export class DepartmentComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.schoolId = params['dId'];
+      this.progId = params['progId'];
       this.classService.getUnitInfo(this.schoolId).then((unit) => {
         this.unit = unit;
         setTimeout(() => {

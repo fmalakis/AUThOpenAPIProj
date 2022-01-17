@@ -6,7 +6,7 @@ import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent },
-  { path: 'department/:dId', component: DepartmentComponent},
+  { path: 'department/:dId/:progId', component: DepartmentComponent},
   { path:'', redirectTo:'main', pathMatch: 'full'}
 ];
 
