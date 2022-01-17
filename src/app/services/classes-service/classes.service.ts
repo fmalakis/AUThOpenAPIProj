@@ -62,22 +62,12 @@ export class ClassesService {
 
   }
 
-  async getCourses(dep: string) {
+  async getCourses(dep: string, progId: string) {
     return new Promise<Course[]>((resolve, reject) => {
 
       let courses: Course[] = [];
 
-      const allCoursesRes = this.http.get<any>(`${Links.api}getDeptStudiesProg/${dep}`);
-      let progId = '';
-      allCoursesRes.subscribe((data) => {
-        data.studiesprogs.forEach((element: any) => {
-          if (element.prname.includes('ΠΠΣ'))
-            progId = element.prID;
-        });
-        if (! progId)
-          reject("Could not load courses for this department");
-        else {
-          const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
+      const all = this.http.get<any>(`${Links.api}getStudiesProgCourses/${progId}`);
           all.subscribe((data) => {
             const c = data.courses;
             c.forEach((el: any) => {
@@ -92,10 +82,8 @@ export class ClassesService {
             // });
             resolve(courses);
           });
-        };
-      });
-    });
-  }
+        });
+    }
 
   getSingleCourseInfo(id: string) {
 
@@ -108,8 +96,29 @@ export class ClassesService {
       }));
     })
     
+  }
 
+  getDeptStudiesProg(id: string) {
 
+    return new Promise<StudiesProg[]>((resolve, reject) => {
+      const res = this.http.get<any>(`${Links.api}getDeptStudiesProg/${id}`);
+
+      let studiesProgs: StudiesProg[] = [];
+
+      res.subscribe((data) => {
+
+        console.log(data);
+
+        const studiesProgArr = data.studiesprogs;
+        for(const studiesProgId in studiesProgArr) {
+          studiesProgs.push(new StudiesProg(studiesProgArr[studiesProgId]['prDepId'], studiesProgArr[studiesProgId]['prID'], studiesProgArr[studiesProgId]['prname']));
+        }
+
+        resolve(studiesProgs);
+
+      });
+
+    });
 
   }
 
@@ -122,6 +131,8 @@ export class ClassesService {
   setCurrentDepartment(dep: Department) {
     this.currentDepartment = dep;
   }
+
+
 
 }
 
@@ -150,4 +161,10 @@ export class Course {
               public titleEn?: string,
               public ects?: string,
               ) {};
+}
+
+export class StudiesProg {
+  constructor(public prDepId: string,
+              public prID: string,
+              public prname: string) {}
 }
