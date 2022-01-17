@@ -8,18 +8,73 @@
         </div>
       </div>
       <div class="row d-flex justify-content-center">
-        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-          <mat-form-field appearance="outline" style="width: 100%;">
-            <mat-label style="color: white">Search by name:</mat-label>
-            <mat-icon style="color: white" matPrefix>search</mat-icon>
-            <input style="color: white;" matInput placeholder="π.χ. Τμήμα Πληροφορικής" [(ngModel)]="searchString">
-            <button *ngIf="searchString" matSuffix mat-icon-button (click)="searchString=''">
-              <mat-icon style="color: white">close</mat-icon>
-            </button>
-          </mat-form-field>
+        <div class="col-lg-8 d-flex justify-content-center">
+          <mat-stepper style="width: 100%;" linear #stepper>
+              <mat-step [stepControl]="depFormGroup">
+                <form [formGroup]="depFormGroup">
+                  <ng-template matStepLabel>Select a department</ng-template>
+                  <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Departments:</mat-label>
+                    <mat-select formControlName="depCtrl" [(value)]="selectedDepartment">
+                      <mat-option style="color: black;" *ngFor="let dep of arrayOfDepartments" [value]="dep">{{ dep.name }}</mat-option>
+                    </mat-select>
+                    <!-- <mat-label>Search by name:</mat-label>
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input matInput placeholder="π.χ. Τμήμα Πληροφορικής"  [(ngModel)]="searchString">
+                    <button *ngIf="searchString" matSuffix mat-icon-button (click)="searchString=''">
+                      <mat-icon>close</mat-icon>
+                    </button> -->
+                  </mat-form-field>
+                </form>
+                  
+                  <!-- <div>
+                    <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button 
+                      color="primary" 
+                      style="margin-right: 1%; margin-top: 1%; white-space: pre-wrap !important;"
+                      (click)="selectDepartment(dep)">
+                        {{ dep.name }}
+                    </button>
+                  </div> -->
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-6 col-md-8 d-flex">
+                      <div style="width: 100%;">
+                        <button style="width: 100%;" mat-raised-button color="primary" [disabled]="selectedDepartment === undefined" (click)="navigateToStudies()" matStepperNext>Next</button>
+                      </div>
+                    </div>
+                  </div>  
+              </mat-step>
+              <mat-step>
+                <form [formGroup]="studiesProgGroup">
+                  <ng-template matStepLabel>Select studies group</ng-template>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Studie Courses</mat-label>
+                    <mat-select formControlName="studyCtrl" [(value)]="selectedStudyProg">
+                      <mat-option *ngFor="let studyProg of arrayOfStudiesProg" [value]="studyProg">{{ studyProg.prname }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-lg-6 col-md-8 d-flex">
+                    <div style="width: 100%;">                      
+                      <button style="width: 100%;" 
+                      mat-raised-button color="primary" 
+                      [disabled]="selectedStudyProg === undefined" 
+                      (click)="navigateToPresentation()" matStepperNext>Next</button>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-3 col-md-5 d-flex">
+                      <button style="width: 100%;" mat-button (click)="stepper.reset()">Reset choices</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </mat-step>
+          </mat-stepper>
         </div>
       </div>
-      <div class="row d-flex justify-content-center" style="margin-top: 0.1%; margin-bottom: 1%; background: #303030;">
+      
+      <!-- <div class="row d-flex justify-content-center" style="margin-top: 0.1%; margin-bottom: 1%; background: #303030;">
         <div class="col d-flex justify-content-center flex-wrap">
           <button *ngFor="let dep of arrayOfDepartments | searchFilter: searchString" mat-raised-button 
           color="primary" 
@@ -28,7 +83,7 @@
             {{ dep.name }}
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>
