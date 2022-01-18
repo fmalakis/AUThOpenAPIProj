@@ -16,10 +16,14 @@ export class ClassesService {
 
   async getAllFaculties() {
 
-    return new Promise<Department[]>((resolve) => {
+    return new Promise<Department[]>((resolve, reject) => {
 
       let faculties: Department[] = [];
       const res = this.http.get<any>(`${Links.api}getUnits/school`);
+
+      if (!res) {
+        reject("error");
+      }
 
       res.subscribe((data) => {
         for (const depId in data.units) {
@@ -122,6 +126,44 @@ export class ClassesService {
 
   }
 
+  getExtraInfoForClass(classId: string) {
+
+    return new Promise<SubjectInfo>((resolve, reject) => {
+
+      const res = this.http.get<any>(`${Links.api}getClassInfo/${classId}`);
+
+      res.subscribe((data) => {
+
+        console.log(data);
+
+        const courseTypes: string[] = [];
+        for(const i in data.class.qa_data.course_information_form_data.type_of_the_course) {
+          courseTypes.push(data.class.qa_data.course_information_form_data.type_of_the_course[i]);
+        }
+
+        const digitalContent: any = [];
+        const digital_course_content = data.class.qa_data.course_information_form_data.digital_course_content;
+        for(const ele in digital_course_content) {
+          let url = digital_course_content[ele].url;
+          if (!url.includes("http"))
+            url = "http://" + url;
+          digitalContent.push({label: digital_course_content[ele].label, url: url})
+        }
+
+        const subj = new SubjectInfo(data.class.qa_data.general_data.course_info.course_period,
+                                     data.class.qa_data.general_data.course_info.teacher_in_charge,
+                                     data.class.qa_data.general_data.class_info.academic_year,
+                                     data.class.qa_data.general_data.class_info.instructors.split(", "),
+                                     courseTypes,
+                                     digitalContent)
+
+        resolve(subj);
+      });
+
+    });
+
+  }
+
   getCurrentDepartment() {
     if (this.currentDepartment)
       return this.currentDepartment;
@@ -159,7 +201,7 @@ export class Course {
               public altKey?: string,
               public title?: string,
               public titleEn?: string,
-              public ects?: string,
+              public ects?: string
               ) {};
 }
 
@@ -167,4 +209,19 @@ export class StudiesProg {
   constructor(public prDepId: string,
               public prID: string,
               public prname: string) {}
+}
+
+export class SubjectInfo {
+  constructor(public coursePeriod: string,
+              public teacherInCharge: string,
+              public academicYear: string,
+              public instructors: string[],
+              public courseType: string[],
+              public digitalCourseContent: [
+                { label: string,
+                   url: string 
+                }],
+              public learningOutComes?: string,
+              public courseContent?: string
+              ) {}
 }
