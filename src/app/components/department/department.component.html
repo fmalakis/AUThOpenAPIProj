@@ -42,7 +42,7 @@
                 <mat-spinner *ngIf="!canDisplayTables"></mat-spinner>
                 <!-- <mat-tab-group [hidden]="!canDisplayTables" style="max-height: 60%;"> -->
                     <!-- <mat-tab label="Undergraduate studies"> -->
-                <app-classes-table *ngIf="unit" [id]="unit.domain" [progId]="progId"></app-classes-table>
+                <app-classes-table style="width: 100%;" *ngIf="unit" [id]="unit.domain" [progId]="progId"></app-classes-table>
                     <!-- </mat-tab> -->
                     <!-- <mat-tab label="Postgraduate Studies">
                         <app-classes-table *ngIf="unit" style="width: 100%;" [id]="unit.domain"></app-classes-table>
