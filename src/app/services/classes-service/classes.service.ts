@@ -144,10 +144,11 @@ export class ClassesService {
         const digitalContent: any = [];
         const digital_course_content = data.class.qa_data.course_information_form_data.digital_course_content;
         for(const ele in digital_course_content) {
+          let label = digital_course_content[ele].label.replace(":", "");
           let url = digital_course_content[ele].url;
           if (!url.includes("http"))
             url = "http://" + url;
-          digitalContent.push({label: digital_course_content[ele].label, url: url})
+          digitalContent.push({label: label, url: url})
         }
 
         const subj = new SubjectInfo(data.class.qa_data.general_data.course_info.course_period,
