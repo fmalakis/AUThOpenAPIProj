@@ -46,7 +46,7 @@
               <mat-step>
                 <form [formGroup]="studiesProgGroup">
                   <ng-template matStepLabel>Select studies group</ng-template>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field style="width: 100%;" appearance="outline">
                     <mat-label>Studie Courses</mat-label>
                     <mat-select formControlName="studyCtrl" [(value)]="selectedStudyProg">
                       <mat-option *ngFor="let studyProg of arrayOfStudiesProg" [value]="studyProg">{{ studyProg.prname }}</mat-option>
