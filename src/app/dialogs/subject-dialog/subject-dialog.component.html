@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>More info about "{{ subject.titleEn }}"</h2>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <mat-spinner *ngIf="!subjectInfo"></mat-spinner>
+        </div>
+    </div>
+</div>
+<mat-dialog-content *ngIf="subjectInfo" class="mat-typography">
+  <h1>Name: {{ subject.titleEn }} ({{ subject.title }})</h1>
+  <h2>Academic Year: {{ subjectInfo.academicYear }}</h2>
+  <h2>Instructors: 
+      <h3 *ngFor="let instructor of subjectInfo.instructors">{{ instructor }}</h3>
+  </h2>
+  <h2>Course types:
+      <h3 *ngFor="let type of subjectInfo.courseType">{{ type }}</h3>
+  </h2>
+  <h2>Digital course content:
+      <h3 *ngFor="let digitalContent of subjectInfo.digitalCourseContent"><a [href]="digitalContent.url" target="_blank">{{ digitalContent.label }}</a></h3>
+  </h2>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

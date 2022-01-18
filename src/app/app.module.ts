@@ -14,6 +14,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper'
 import { MatSelect, MatSelectModule } from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,7 @@ import { MainComponent } from './components/main/main.component';
 import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from './components/department/department.component';
 import { ClassesTableComponent } from './components/classes-table/classes-table/classes-table.component';
+import { SubjectDialogComponent } from './dialogs/subject-dialog/subject-dialog.component';
 
 
 
@@ -36,7 +38,8 @@ import { ClassesTableComponent } from './components/classes-table/classes-table/
     SearchFilterPipe,
     MainComponent,
     DepartmentComponent,
-    ClassesTableComponent
+    ClassesTableComponent,
+    SubjectDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ClassesTableComponent } from './components/classes-table/classes-table/
     MatStepperModule,
     MatSelectModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
