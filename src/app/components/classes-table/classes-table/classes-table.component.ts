@@ -3,6 +3,9 @@ import { ClassesService, Course } from 'src/app/services/classes-service/classes
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { SubjectDialogComponent } from 'src/app/dialogs/subject-dialog/subject-dialog.component';
+
 
 
 @Component({
@@ -25,7 +28,7 @@ export class ClassesTableComponent implements OnInit {
 
   displayedColumns: string[] = ['courseCode', 'title', 'ects'];
 
-  constructor(cs: ClassesService) {
+  constructor(cs: ClassesService, public dialog: MatDialog) {
       this.classService = cs;
    }
 
@@ -50,6 +53,12 @@ export class ClassesTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  openSubjectInfoDialogue(subject: Course) {
+    const dialogRef = this.dialog.open(SubjectDialogComponent, {
+      data: subject
+    });
+
+  }
 
   sortData(sort: Sort) {
     const data = this.courses.slice();

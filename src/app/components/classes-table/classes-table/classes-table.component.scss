@@ -7,3 +7,13 @@ mat-table {
     height: 100vh;
     max-height: 40vh;
 }
+
+.table-row {
+    cursor: pointer;
+}
+
+.table-row:hover {
+    background-color: gray;
+    transition-delay: 0.5ms;
+    transition-duration: 1s;
+}

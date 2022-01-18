@@ -20,6 +20,6 @@ aria-label="Select page">
             <td mat-cell *matCellDef="let element"> {{ element.ects }}</td>
         </ng-container>
         <tr mat-header-row  *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openSubjectInfoDialogue(row)"></tr>
     </mat-table>
 </div>
