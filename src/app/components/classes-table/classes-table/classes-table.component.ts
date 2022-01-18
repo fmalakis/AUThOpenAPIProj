@@ -61,6 +61,7 @@ export class ClassesTableComponent implements OnInit {
   }
 
   sortData(sort: Sort) {
+
     const data = this.courses.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedCourses = data;
@@ -80,6 +81,9 @@ export class ClassesTableComponent implements OnInit {
           return 0;
       }
     });
+
+    this.dataSource.data = this.courses;
+
     this.table.renderRows();
   }
 }
