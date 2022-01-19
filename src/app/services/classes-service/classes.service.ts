@@ -155,12 +155,17 @@ export class ClassesService {
             digitalContent.push({label: label, url: url})
           }
 
+          const learning_outcomes: string = data.class.qa_data.course_information_form_data.learning_outcomes["el"];
+          const courseContent: string = data.class.qa_data.course_information_form_data.course_content_syllabus.course_content["el"];
+
           const subj = new SubjectInfo(data.class.qa_data.general_data.course_info.course_period,
                                       data.class.qa_data.general_data.course_info.teacher_in_charge,
                                       data.class.qa_data.general_data.class_info.academic_year,
                                       data.class.qa_data.general_data.class_info.instructors.split(", "),
                                       courseTypes,
-                                      digitalContent)
+                                      digitalContent,
+                                      learning_outcomes,
+                                      courseContent)
 
 
           resolve(subj);
@@ -230,7 +235,7 @@ export class SubjectInfo {
                 { label: string,
                    url: string 
                 }],
-              public learningOutComes?: string,
+              public learningOutcomes: string,
               public courseContent?: string
               ) {}
 }
