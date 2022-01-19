@@ -12,7 +12,7 @@ aria-label="Select page">
             <td style="width: 15%;" mat-cell *matCellDef="let element"> {{ element.courseCode }}</td>
         </ng-container>
         <ng-container matColumnDef="title">
-            <th mat-sort-header *matHeaderCellDef style="color: black;">Class Name</th>
+            <th mat-sort-header *matHeaderCellDef style="color: black;">Course Name</th>
             <td mat-cell style="width: 100%;" *matCellDef="let element"> {{ element.title }} {{ element.titleEn !== undefined? '(' + element.titleEn + ')' : '' }}</td>
         </ng-container>
         <ng-container matColumnDef="ects">

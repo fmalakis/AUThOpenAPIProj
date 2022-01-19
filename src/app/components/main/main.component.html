@@ -9,21 +9,15 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8 d-flex justify-content-center">
-          <mat-stepper style="width: 100%;" linear #stepper>
+          <mat-stepper style="width: 100%; background: transparent;" linear #stepper>
               <mat-step [stepControl]="depFormGroup">
                 <form [formGroup]="depFormGroup">
                   <ng-template matStepLabel>Select a department</ng-template>
-                  <mat-form-field appearance="outline" style="width: 100%;">
-                    <mat-label>Departments:</mat-label>
-                    <mat-select formControlName="depCtrl" [(value)]="selectedDepartment">
-                      <mat-option style="color: black;" *ngFor="let dep of arrayOfDepartments" [value]="dep">{{ dep.name }}</mat-option>
+                  <mat-form-field color="primary" appearance="outline" style="width: 100%;">
+                    <mat-label style="color: white;">Departments:</mat-label>
+                    <mat-select style="color: white;" formControlName="depCtrl" [(value)]="selectedDepartment">
+                      <mat-option *ngFor="let dep of arrayOfDepartments" [value]="dep">{{ dep.name }}</mat-option>
                     </mat-select>
-                    <!-- <mat-label>Search by name:</mat-label>
-                    <mat-icon matPrefix>search</mat-icon>
-                    <input matInput placeholder="π.χ. Τμήμα Πληροφορικής"  [(ngModel)]="searchString">
-                    <button *ngIf="searchString" matSuffix mat-icon-button (click)="searchString=''">
-                      <mat-icon>close</mat-icon>
-                    </button> -->
                   </mat-form-field>
                 </form>
                   
@@ -47,7 +41,7 @@
                 <form [formGroup]="studiesProgGroup">
                   <ng-template matStepLabel>Select studies group</ng-template>
                   <mat-form-field style="width: 100%;" appearance="outline">
-                    <mat-label>Studie Courses</mat-label>
+                    <mat-label>Study Courses</mat-label>
                     <mat-select formControlName="studyCtrl" [(value)]="selectedStudyProg">
                       <mat-option *ngFor="let studyProg of arrayOfStudiesProg" [value]="studyProg">{{ studyProg.prname }}</mat-option>
                     </mat-select>
@@ -64,7 +58,7 @@
                   </div>
                   <div class="row d-flex justify-content-center">
                     <div class="col-lg-3 col-md-5 d-flex">
-                      <button style="width: 100%;" mat-button (click)="stepper.reset()">Reset choices</button>
+                      <button style="width: 100%; color: white;" mat-button (click)="stepper.reset()">Reset choices</button>
                     </div>
                   </div>
                   

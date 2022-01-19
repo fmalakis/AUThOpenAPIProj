@@ -18,6 +18,14 @@
   <h2>Digital course content:
       <h3 *ngFor="let digitalContent of subjectInfo.digitalCourseContent"><a [href]="digitalContent.url" target="_blank">{{ digitalContent.label }}</a></h3>
   </h2>
+  <div>
+    <h2>Learning Outcomes:</h2>
+    <p style="white-space: pre-line;">{{ subjectInfo.learningOutcomes }}</p>  
+  </div>
+  <div>
+      <h2>Course content:</h2>
+      <p style="white-space: pre-line;">{{ subjectInfo.courseContent }}</p>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
