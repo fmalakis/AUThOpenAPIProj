@@ -2,8 +2,15 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col d-flex justify-content-center align-items-center" style="margin-top: 3%; font-size: xx-large;">
+                <span class="badge bg-success">
+                    {{ unit.name }}
+                </span> 
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col d-flex justify-content-center align-items-center" style="font-size: xx-large;">
                 <span style="white-space: pre-wrap; color: white;">
-                ΠΠΣ Τμήμα Πληροφορικής 
+                    {{ studiesProgName }}
                 </span>
                 <button (click)="openUnitInfoDialog()" mat-fab color="primary">
                     <mat-icon>info</mat-icon>

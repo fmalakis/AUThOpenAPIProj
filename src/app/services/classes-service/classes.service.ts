@@ -126,6 +126,18 @@ export class ClassesService {
 
   }
 
+  getStudiesProgName(id: string) {
+    return new Promise<string>((resolve, reject) => {
+
+      const res = this.http.get<any>(`${Links.api}getStudiesProgInfo/${id}`);
+
+      res.subscribe((data) => {
+        resolve(data.studiesprog.prname);
+      });
+
+    })
+  }
+
   getExtraInfoForClass(classId: string) {
 
     return new Promise<SubjectInfo>((resolve, reject) => {

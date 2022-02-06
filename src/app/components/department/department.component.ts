@@ -16,6 +16,7 @@ export class DepartmentComponent implements OnInit {
   route: ActivatedRoute;
   schoolId: string = "";
   progId: string = "";
+  studiesProgName: string = "";
   unit: UnitInfo | any;
   canDisplayTables: boolean = false;
 
@@ -29,6 +30,9 @@ export class DepartmentComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.schoolId = params['dId'];
       this.progId = params['progId'];
+      this.classService.getStudiesProgName(this.progId).then((name: string) => {
+        this.studiesProgName = name;
+      });
       this.classService.getUnitInfo(this.schoolId).then((unit) => {
         this.unit = unit;
         setTimeout(() => {
