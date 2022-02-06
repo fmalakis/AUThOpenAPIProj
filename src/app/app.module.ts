@@ -16,6 +16,7 @@ import {MatStepperModule} from '@angular/material/stepper'
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatListModule} from '@angular/material/list';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from './components/department/department.component';
 import { ClassesTableComponent } from './components/classes-table/classes-table/classes-table.component';
 import { SubjectDialogComponent } from './dialogs/subject-dialog/subject-dialog.component';
+import { DepartmentInfoDialogComponent } from './dialogs/department-info-dialog/department-info-dialog.component';
 
 
 
@@ -40,7 +42,8 @@ import { SubjectDialogComponent } from './dialogs/subject-dialog/subject-dialog.
     MainComponent,
     DepartmentComponent,
     ClassesTableComponent,
-    SubjectDialogComponent
+    SubjectDialogComponent,
+    DepartmentInfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { SubjectDialogComponent } from './dialogs/subject-dialog/subject-dialog.
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

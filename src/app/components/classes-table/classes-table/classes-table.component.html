@@ -6,7 +6,7 @@ aria-label="Select page">
 </mat-paginator> -->
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="courses.length"></mat-paginator>
 <div class="scrollItem">
-    <mat-table fixedLayout="true" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" style="color: white;">
+    <mat-table fixedLayout="true" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
         <ng-container matColumnDef="courseCode">
             <th mat-sort-header *matHeaderCellDef style="color: black;">Course Code</th>
             <td style="width: 15%;" mat-cell *matCellDef="let element"> {{ element.courseCode }}</td>
