@@ -1,0 +1,75 @@
+<h2>
+    More information about {{unit.nameEn}}:
+</h2>
+<mat-dialog-content>
+    <mat-list>
+        <mat-list-item>
+            <mat-icon mat-list-icon>location_city</mat-icon>
+            <div mat-line>Name: {{ unit.nameEn }} ({{ unit.domain }})</div>
+        </mat-list-item>
+    </mat-list>
+    <mat-list>
+        <mat-list-item>
+            <mat-icon mat-list-icon>contact_mail</mat-icon>
+            <div mat-line>Faculty e-mail: <a href="mailto:{{unit.mail}}">
+                {{ unit.mail }}
+            </a>
+            </div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon mat-list-icon>contact_phone</mat-icon>
+            <div mat-line>Faculty contact numbers: </div>
+        </mat-list-item>
+        <mat-list style="margin-left: 20%; margin-top: -1%;">
+            <mat-list-item *ngFor="let tel of unit.secretaryTels" style="margin-top: -2%;">
+                <div>
+                    • <a href="tel:{{ tel }}">
+                        {{ tel }}
+                    </a> 
+                </div>
+                
+            </mat-list-item>
+        </mat-list>
+        
+    </mat-list>
+</mat-dialog-content>
+<!-- <div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-md-8 d-flex justify-content-center" style="padding-top: 0.7%; font-size: xx-large;">
+            <span *ngIf="unit" class="badge bg-success" style="white-space: pre-wrap;">
+            {{ unit.name }}
+            </span>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center" style="margin-top: 0.5%;">
+        <div class="col d-flex justify-content-center">
+            <span *ngIf="unit" class="badge bg-dark" style="font-size: x-large; margin-right: 0.5%; white-space: pre-wrap;">
+                {{ unit.nameEn }}
+            </span>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center" style="padding-top: 0.5%;">
+        <div class="col d-flex justify-content-center flex-wrap">
+            <span *ngIf="unit" class="badge bg-info" style="font-size: large; margin-right: 0.5%;">
+                {{ unit.domain }}
+            </span>
+            <a *ngIf="unit" href="mailto:{{unit.mail}}" target="_blank" class="badge bg-light" style="font-size: large; color: black; margin-right: 0.5%;">
+                {{ unit.mail }}
+            </a>
+            <a *ngIf="unit" href="{{unit.url}}" target="_blank" class="badge bg-light" style="font-size: large; color: black; margin-right: 0.5%;">
+                {{ unit.url }}
+            </a>
+        </div>
+    </div>
+    <div *ngIf="unit" class="row d-flex justify-content-center" style="margin-top: 0.5%;">
+        <div class="col col-sm-10 d-flex justify-content-center flex-wrap">
+            <span class="badge bg-warning" style="font-size: large; margin-right: 0.5%;">
+                Contact numbers:
+            </span> 
+            <a  *ngFor="let tel of unit.secretaryTels" href="tel:{{tel}}"class="badge bg-warning" style="font-size: large; margin-right: 0.5%;">
+                {{ tel }}
+            </a> 
+        </div>
+    </div>
+</div> -->
+

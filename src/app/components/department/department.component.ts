@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { DepartmentInfoDialogComponent } from 'src/app/dialogs/department-info-dialog/department-info-dialog.component';
 import { ClassesService, Course, UnitInfo } from 'src/app/services/classes-service/classes.service';
 
 
@@ -17,7 +19,7 @@ export class DepartmentComponent implements OnInit {
   unit: UnitInfo | any;
   canDisplayTables: boolean = false;
 
-  constructor(classService: ClassesService, route: ActivatedRoute) { 
+  constructor(classService: ClassesService, route: ActivatedRoute, private dialog: MatDialog) { 
     this.classService = classService;
     this.route = route;
   }
@@ -35,6 +37,12 @@ export class DepartmentComponent implements OnInit {
       });
     });
     
+  }
+
+  openUnitInfoDialog() {
+    this.dialog.open(DepartmentInfoDialogComponent, {
+      data: this.unit
+    });
   }
 
 }
